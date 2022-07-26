@@ -61,6 +61,11 @@ public class PatientController {
                 .body(patientService.getAllPatientsWithActiveOrders(bearerToken));
     }
 
+    @GetMapping("/test")
+    public String test(){
+        return "patient service";
+    }
+
     @GetMapping("/{id}")
     public ResponseEntity<Patient> getPatientById(@PathVariable String id,
                                                   @RequestHeader("Authorization") String bearerToken){
