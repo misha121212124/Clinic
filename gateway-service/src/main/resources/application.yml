@@ -4,6 +4,24 @@ server:
 spring:
   application:
     name: gateway-service
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          enabled: true
+          lower-case-service-id: true
+      default-filters:
+        - DedupeResponseHeader=Access-Control-Allow-Credentials Access-Control-Allow-Origin
+      globalcors:
+        corsConfigurations:
+          '[/**]':
+            allowedOrigins: "http://localhost:3000"
+            allowedMethods:
+              - POST
+              - GET
+              - OPTIONS
+            allowedHeaders: "*"
+            allowCredentials: true
   main:
     web-application-type: reactive
     allow-bean-definition-overriding: true

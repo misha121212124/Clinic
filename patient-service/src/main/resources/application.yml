@@ -23,17 +23,17 @@ spring:
       auto-index-creation: true
   application:
     name: patient-service
-  security:
-    user:
-      name: name
-      password: name
+#  security:
+#    user:
+#      name: name
+#      password: name
 
 eureka:
   instance:
     appname: patient-service
   client:
-    fetchRegistry: false
-    register-with-eureka: false
+    fetchRegistry: true
+#    register-with-eureka: false
     serviceUrl:
       defaultZone: http://localhost:8761/eureka
       instance:

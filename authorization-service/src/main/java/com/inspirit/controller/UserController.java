@@ -57,6 +57,22 @@ public class UserController {
         }
     }
 
+    @GetMapping("/default_user")
+    public ResponseEntity<User> login() {
+        try {
+            Authentication authenticate = authenticationManager
+                    .authenticate(new UsernamePasswordAuthenticationToken("name1", "name1"));
+
+            User user = (User) authenticate.getPrincipal();
+
+            return ResponseEntity.ok()
+                    .header(HttpHeaders.AUTHORIZATION, jwtTokenUtil.generateAccessToken(user))
+                    .body(user);
+        } catch (BadCredentialsException ex) {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
+        }
+    }
+
     @PostMapping("/check")
     public ResponseEntity<User> check(@RequestHeader("Authorization") String bearerToken) {
         try {
